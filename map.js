@@ -699,29 +699,94 @@ landslideDepositPopup = function(feature) {
       };
 
 
-      var rendererFloodCanyon = {
+      var rendererLiquefaction = {
         type: "unique-value", // autocasts as new UniqueValueRenderer()
-        field: "FCHHazardLine",
-        //defaultSymbol: { type: "simple-line" },
+        field: "Hazard_Symbology_Text",
+        //defaultSymbol: { type: "simple-fill" },
         uniqueValueInfos: [
         {
     // All features with value of "Very High" will be green
-    value: "VHfch",
-    label: "Very High",
+    value: "Very High Susceptibility",
+    label: "Very High Susceptibility",
     symbol: {
-      type: "simple-line",  // autocasts as new SimpleFillSymbol()
-      color: "red",
-      width: "2px"
+      type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+      color: [230, 0, 0],
+      outline: {  // autocasts as new SimpleLineSymbol()
+        color: [0, 0, 0],
+        width: "0.4px"
+      }
     }
-  },{
-
-              // All features with value of "High" will be blue
-    value: "Hfch",
-    label: "High",
+  },       {
+    // All features with value of "Very High" will be green
+    value: "High Susceptibility",
+    label: "High Susceptibility",
     symbol: {
-      type: "simple-line",  // autocasts as new SimpleFillSymbol()
-      color: "blue",
-      width: "2px"
+      type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+      color: [255, 85, 0],
+      outline: {  // autocasts as new SimpleLineSymbol()
+        color: [0, 0, 0],
+        width: "0.4px"
+      }
+    }
+  },        {
+    // All features with value of "Very High" will be green
+    value: "Moderate Susceptibility",
+    label: "Moderate Susceptibility",
+    symbol: {
+      type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+      color: [222, 197, 129],
+      outline: {  // autocasts as new SimpleLineSymbol()
+        color: [0, 0, 0],
+        width: "0.4px"
+      }
+    }
+  },        {
+    // All features with value of "Very High" will be green
+    value: "Low Susceptibility",
+    label: "Low Susceptibility",
+    symbol: {
+      type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+      color: [56, 168, 0],
+      outline: {  // autocasts as new SimpleLineSymbol()
+        color: [0, 0, 0],
+        width: "0.4px"
+      }
+    }
+  },        {
+    // All features with value of "Very High" will be green
+    value: "Very Low Susceptibility",
+    label: "Very Low Susceptibility",
+    symbol: {
+      type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+      color: [115, 223, 255],
+      outline: {  // autocasts as new SimpleLineSymbol()
+        color: [0, 0, 0],
+        width: "0.4px"
+      }
+    }
+  },        {
+    // All features with value of "Very High" will be green
+    value: "Unknown Susceptibility",
+    label: "Unknown Susceptibility",
+    symbol: {
+      type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+      color: [230, 230, 0],
+      outline: {  // autocasts as new SimpleLineSymbol()
+        color: [0, 0, 0],
+        width: "0.4px"
+      }
+    }
+  },        {
+    // All features with value of "Very High" will be green
+    value: "No Susceptibility",
+    label: "No Susceptibility",
+    symbol: {
+      type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+      color: [255, 255, 255, 0],
+      outline: {  // autocasts as new SimpleLineSymbol()
+        color: [0, 0, 0],
+        width: "0.4px"
+      }
     }
   }]
       };
@@ -893,6 +958,7 @@ var oldestDottedFault = {
                 elevationInfo: [{
                     mode: "on-the-ground"
                 }],
+                renderer: rendererLiquefaction,
                 visible: false,
                 outFields: ["*"],
                 popupTemplate: {
@@ -1955,6 +2021,8 @@ if (title === "Mapped Areas") {
                     layer = shakingVector;
                 } else if (title === "Areas Not Mapped within Project Areas") {
                     layer = notMapped;
+                } else if (title === "Liquefaction Susceptibility") {
+                    layer = liquefaction;
                 }
 
 if (id === "information") {
