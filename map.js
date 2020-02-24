@@ -2134,6 +2134,12 @@ window.onclick = function(event) {
 var currentExtentButton = document.getElementById("currentButton");
 currentExtentButton.onclick = function() {
     console.log(mapView.extent);
+    var areaHeight = mapView.extent.height;
+    var areaWidth = mapView.extent.width;
+
+    //check to be sure extents are not too large
+    if (areaHeight < 12000 && areaWidth < 18000) {
+
     var xMini = mapView.extent.xmin;
     var xMaxi = mapView.extent.xmax;
     var yMini = mapView.extent.ymin;
@@ -2161,7 +2167,12 @@ var aoi = {spatialReference: {
       localStorage.setItem('aoi', JSON.stringify(params));
       console.log(localStorage);
       window.open('./report');
-  };
+
+} else {
+console.log("Area of interest is too large, try again");
+alert("Area of interest is too large, try a smaller extent.");
+}
+};
   
 
 
@@ -2204,12 +2215,15 @@ function addGraphic(event) {
   });
   tempGraphicsLayer.add(graphic);
   console.log(event.graphic);
+  drawAOIHeight = event.graphic.geometry.extent.height;
+  drawAOIWidth = event.graphic.geometry.extent.width;
   aoi = event.graphic.geometry.toJSON();
 }
 
 
 //Called when sketchViewModel's update-complete or update-cancel
 function updateGraphic(event) {
+    console.log("Update");
   // event.graphic is the graphic that user clicked on and its geometry
   // has not been changed. Update its geometry and add it to the layer
   event.graphic.geometry = event.geometry;
@@ -2265,9 +2279,13 @@ downloadButton.onclick = function() {
 //           console.log(inputGraphicContainer);
 //           console.log(featureSet);
   console.log(graphic);
+  console.log(drawAOIHeight);
+  console.log(drawAOIWidth);
   console.log(aoi);
 
 
+  //check to be sure extents are not too large
+  if (drawAOIHeight < 12000 && drawAOIWidth < 18000) {
   var params = {
         description: "Test",
         polygon: aoi,
@@ -2278,6 +2296,10 @@ downloadButton.onclick = function() {
     localStorage.setItem('aoi', JSON.stringify(params));
     console.log(localStorage);
     window.open('./report');
+        } else {
+            console.log("Area of interest is too large, try again");
+alert("Area of interest is too large, try a smaller area.");
+        }
 };
 
 
