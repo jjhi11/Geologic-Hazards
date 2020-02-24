@@ -277,42 +277,6 @@ require([
         console.log(feature);
         var content = "";
 
-        // if (key === "category") {
-        //     if (data.category) { 
-        //         content += "<span class='bold' title='Longitude'><b>category: </b></span>" + data.category + "<br/>";
-        //     }
-        // }
-        // if (key === "d_material") {
-        //     if (data.d_material) { 
-        //         content += "<span class='bold' title='Longitude'><b>d_material: </b></span>" + data.d_material + "<br/>";
-        //     }
-        // }
-        // if (key === "d_move_type") {
-        //     if (data.d_move_type) { 
-        //         content += "<span class='bold' title='Longitude'><b>d_material: </b></span>" + data.d_material + "<br/>";
-        //     }
-        // }
-        // if (key === "d_name") {
-        //     if (data.d_name) { 
-        //         content += "<span class='bold' title='Longitude'><b>d_name: </b></span>" + data.d_name + "<br/>";
-        //     }
-        // }
-        // if (key === "d_thickness") {
-        //     if (data.d_thickness) { 
-        //         content += "<span class='bold' title='Longitude'><b>d_thickness: </b></span>" + data.d_thickness + "<br/>";
-        //     }
-        // }
-        // if (key === "d_move_dir") {
-        //     if (data.d_move_dir) { 
-        //         content += "<span class='bold' title='Longitude'><b>d_move_dir: </b></span>" + data.d_move_dir + "<br/>";
-        //     }
-        // }
-        // if (key === "d_landform") {
-        //     if (data.d_landform) { 
-        //         content += "<span class='bold' title='Longitude'><b>d_landform: </b></span>" + data.d_landform + "<br/>";
-        //     }
-        // }
-
         if (feature.graphic.attributes.s_name) {
             content += "<span class='bold' title='Longitude'><b>Name: </b></span>{s_name}<br/>";
         }
@@ -1542,37 +1506,6 @@ require([
         }
     });
 
-    // const floodCanyon = new FeatureLayer({
-    //     url: "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_Geologic_Hazards/FeatureServer/0",
-    //     title: "Flood Canyon Hazard",
-    //     renderer: rendererFloodCanyon,
-    //     visible: false,  
-    //     outFields: ["*"],
-    //     popupTemplate: {
-    //          title: "<b>{relationships/0/HazardName}</b>",
-    //          content: [{
-    //              type: "fields",
-    //              fieldInfos: [{
-    //                  fieldName: "FCHMappedScale",
-    //                  visible: false,
-    //                  label: "Mapped Scale"
-    //              },
-    //              {
-    //                 fieldName: "relationships/0/Description",
-    //                 visible: false,
-    //                 label: "Hazard Description"
-    //             }, {
-    //              fieldName: "relationships/0/HazardName",
-    //              visible: false,
-    //              label: "Hazard"
-    //             }]
-    //          },
-    //          {
-    //         type: "text",
-    //         text: "<b>{Hazard_Symbology_Text}: </b>{relationships/0/Description}<br>{FCHMappedScale:fchPopup}"
-    //     }]
-    //          }              
-    // });
 
     const floodHazard = new FeatureLayer({
         url: "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_Geologic_Hazards/FeatureServer/0",
@@ -2360,35 +2293,7 @@ require([
         }
     });
 
-    // mapView.popup.watch('selectedFeature', function(gra){
-    //     console.log(gra);
-    //     if(gra.sourceLayer.url == "https://webmaps.geology.utah.gov/arcgis/rest/services/Hazards/quaternary_faults/MapServer/0"){
-    //         console.log("We have a fault");
-    //       mapView.graphics.removeAll();
-    //       //var h = mapView.highlightOptions;
-    //       gra.symbol = {
-    //         type: "simple-line", // autocasts as new SimpleFillSymbol()
-    //         color: [0,255, 255, 2],
-    //         width: 2
-    //         // outline: {
-    //         //   // autocasts as new SimpleLineSymbol()
-    //         //   color: [115, 255, 223, 1],
-    //         //   width: 2
-    //         // }
-    //       };
-    //       mapView.graphics.add(gra);
-    //     }
-    //     else{
-    //         console.log("not a fault");
-    //       mapView.graphics.removeAll();
-    //     }
-    //   });
 
-    //   mapView.popup.watch('visible', function(vis){
-    //     if(!vis){
-    //       mapView.graphics.removeAll();
-    //     }
-    //   });
 
 
 
