@@ -2144,7 +2144,7 @@ require([
     };
 
 
-
+    //custom polygon area of interest report generator tool
 
     //SketchView functions
     mapView.when(function() {
@@ -2175,6 +2175,26 @@ require([
 
         //Called when sketchViewModel's create-complete event is fired
         function addGraphic(event) {
+            if (event.state === "complete") {
+                console.log("complete");
+                            //check to be sure extents are not too large
+            if (drawAOIHeight < 12000 && drawAOIWidth < 18000) {
+                var params = {
+                    description: "Test",
+                    polygon: aoi,
+
+                };
+                console.log(params);
+
+                localStorage.setItem('aoi', JSON.stringify(params));
+                console.log(localStorage);
+                window.open('./report');
+            } else {
+                console.log("Area of interest is too large, try again");
+                alert("Area of interest is too large, try a smaller area.");
+            }
+            } else {
+                console.log("not complete");
             // Create a new graphic and set its geometry to
             // `create-complete` event geometry.
             graphic = new Graphic({
@@ -2186,6 +2206,7 @@ require([
             drawAOIHeight = event.graphic.geometry.extent.height;
             drawAOIWidth = event.graphic.geometry.extent.width;
             aoi = event.graphic.geometry.toJSON();
+        }
         }
 
 
