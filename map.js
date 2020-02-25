@@ -1248,7 +1248,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/10/Description}<br><b>Mapped Scale: </b>{PESMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/11/Description}<br><b>Mapped Scale: </b>{PESMappedScale}"
                 }
             ]
         }
