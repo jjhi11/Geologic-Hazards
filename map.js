@@ -16,6 +16,7 @@ require([
     "esri/widgets/Compass",
     "esri/widgets/Search",
     "esri/widgets/Legend",
+    "esri/widgets/Expand",
     "esri/widgets/Sketch/SketchViewModel",
     "esri/widgets/BasemapToggle",
     "esri/widgets/ScaleBar",
@@ -47,7 +48,7 @@ require([
     "calcite-maps/calcitemaps-arcgis-support-v0.10",
     "dojo/query",
     "dojo/domReady!"
-], function(Map, MapView, SceneView, FeatureLayer, ImageryLayer, MapImageLayer, GroupLayer, watchUtils, DimensionalDefinition, MosaicRule, Home, Zoom, Compass, Search, Legend, SketchViewModel, BasemapToggle, ScaleBar, Attribution, LayerList, Locate, NavigationToggle, GraphicsLayer, SimpleFillSymbol, Graphic, FeatureSet, Query, QueryTask, Memory, ObjectStore, ItemFileReadStore, DataGrid, OnDemandGrid, Selection, List, Collapse, Dropdown, CalciteMaps, CalciteMapArcGISSupport, query) {
+], function(Map, MapView, SceneView, FeatureLayer, ImageryLayer, MapImageLayer, GroupLayer, watchUtils, DimensionalDefinition, MosaicRule, Home, Zoom, Compass, Search, Legend, Expand, SketchViewModel, BasemapToggle, ScaleBar, Attribution, LayerList, Locate, NavigationToggle, GraphicsLayer, SimpleFillSymbol, Graphic, FeatureSet, Query, QueryTask, Memory, ObjectStore, ItemFileReadStore, DataGrid, OnDemandGrid, Selection, List, Collapse, Dropdown, CalciteMaps, CalciteMapArcGISSupport, query) {
     /******************************************************************
      *
      * Create the map, view and widgets
@@ -112,6 +113,14 @@ require([
     var locateWidget = new Locate({
         view: mapView, // Attaches the Locate button to the view
     });
+
+    // //legend expand widget
+    // var expandLegend = new Expand({
+    //     view: view,
+    //     content: layerList,
+    //     //group: "top-left",
+    //     expanded: true
+    //   })
 
     mapView.ui.add(locateWidget, "top-left");
 
@@ -749,6 +758,19 @@ require([
         }]
     };
 
+    var surfaceFaultRuptureRenderer = {
+        type: "simple",
+        label: "Surface Fault Rupture Zone",
+            symbol: {
+              type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+              color: [252, 211, 126, 0.6],
+              outline: {
+                width: "0.4px",
+                color: "black",
+                }
+            }
+    }
+
     //quad renderer
     var quadRenderer = {
         type: "simple",
@@ -1023,6 +1045,7 @@ require([
     const faultRupture = new FeatureLayer({
         url: "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_Earthquake_Hazards/FeatureServer/3",
         title: "Surface Fault Rupture Special Study Zone",
+        renderer: surfaceFaultRuptureRenderer,
         elevationInfo: [{
             mode: "on-the-ground"
         }],
@@ -1902,6 +1925,17 @@ require([
         }
     });
 
+        //legend expand widget
+        var expandLegend = new Expand({
+            view: mapView,
+            content: layerList,
+            //group: "top-left",
+            expandTooltip: "Expand Legend",
+            expanded: true
+          })
+    
+        mapView.ui.add(expandLegend, "top-left");
+
 
     //layerlist action for opacity
 
@@ -2258,45 +2292,46 @@ require([
             setActiveButton(this);
         };
 
-        //Download button 
-        var downloadButton = document.getElementById("DownloadButton");
-        downloadButton.onclick = function() {
-            // set the sketch to create a polygon geometry
-            //sketchViewModel.create("polygon");
-            //   var inputGraphicContainer = [];
-            //           inputGraphicContainer.push(graphic);
-            //           var featureSet = new FeatureSet();
-            //           featureSet.features = inputGraphicContainer;
-            //           console.log(inputGraphicContainer);
-            //           console.log(featureSet);
-            console.log(graphic);
-            console.log(drawAOIHeight);
-            console.log(drawAOIWidth);
-            console.log(aoi);
+        // //Download button 
+        // var downloadButton = document.getElementById("DownloadButton");
+        // downloadButton.onclick = function() {
+        //     // set the sketch to create a polygon geometry
+        //     //sketchViewModel.create("polygon");
+        //     //   var inputGraphicContainer = [];
+        //     //           inputGraphicContainer.push(graphic);
+        //     //           var featureSet = new FeatureSet();
+        //     //           featureSet.features = inputGraphicContainer;
+        //     //           console.log(inputGraphicContainer);
+        //     //           console.log(featureSet);
+        //     console.log(graphic);
+        //     console.log(drawAOIHeight);
+        //     console.log(drawAOIWidth);
+        //     console.log(aoi);
 
 
-            //check to be sure extents are not too large
-            if (drawAOIHeight < 12000 && drawAOIWidth < 18000) {
-                var params = {
-                    description: "Test",
-                    polygon: aoi,
+        //     //check to be sure extents are not too large
+        //     if (drawAOIHeight < 12000 && drawAOIWidth < 18000) {
+        //         var params = {
+        //             description: "Test",
+        //             polygon: aoi,
 
-                };
-                console.log(params);
+        //         };
+        //         console.log(params);
 
-                localStorage.setItem('aoi', JSON.stringify(params));
-                console.log(localStorage);
-                window.open('./report');
-            } else {
-                console.log("Area of interest is too large, try again");
-                alert("Area of interest is too large, try a smaller area.");
-            }
-        };
+        //         localStorage.setItem('aoi', JSON.stringify(params));
+        //         console.log(localStorage);
+        //         window.open('./report');
+        //     } else {
+        //         console.log("Area of interest is too large, try again");
+        //         alert("Area of interest is too large, try a smaller area.");
+        //     }
+        // };
 
 
         //Reset button
         document.getElementById("resetBtn").onclick = function() {
             sketchVM.cancel();
+            console.log("reset polygon");
             tempGraphicsLayer.removeAll();
             setActiveButton();
         };
