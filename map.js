@@ -10,6 +10,9 @@ require([
     "esri/core/watchUtils",
     "esri/layers/support/DimensionalDefinition",
     "esri/layers/support/MosaicRule",
+    "esri/geometry/support/webMercatorUtils",
+    "esri/tasks/GeometryService",
+    "esri/tasks/support/ProjectParameters",
     // Widgets
     "esri/widgets/Home",
     "esri/widgets/Zoom",
@@ -48,7 +51,7 @@ require([
     "calcite-maps/calcitemaps-arcgis-support-v0.10",
     "dojo/query",
     "dojo/domReady!"
-], function(Map, MapView, SceneView, FeatureLayer, ImageryLayer, MapImageLayer, GroupLayer, watchUtils, DimensionalDefinition, MosaicRule, Home, Zoom, Compass, Search, Legend, Expand, SketchViewModel, BasemapToggle, ScaleBar, Attribution, LayerList, Locate, NavigationToggle, GraphicsLayer, SimpleFillSymbol, Graphic, FeatureSet, Query, QueryTask, Memory, ObjectStore, ItemFileReadStore, DataGrid, OnDemandGrid, Selection, List, Collapse, Dropdown, CalciteMaps, CalciteMapArcGISSupport, query) {
+], function(Map, MapView, SceneView, FeatureLayer, ImageryLayer, MapImageLayer, GroupLayer, watchUtils, DimensionalDefinition, MosaicRule, webMercatorUtils, GeometryService, ProjectParameters, Home, Zoom, Compass, Search, Legend, Expand, SketchViewModel, BasemapToggle, ScaleBar, Attribution, LayerList, Locate, NavigationToggle, GraphicsLayer, SimpleFillSymbol, Graphic, FeatureSet, Query, QueryTask, Memory, ObjectStore, ItemFileReadStore, DataGrid, OnDemandGrid, Selection, List, Collapse, Dropdown, CalciteMaps, CalciteMapArcGISSupport, query) {
     /******************************************************************
      *
      * Create the map, view and widgets
@@ -1912,6 +1915,11 @@ require([
                         id: "information"
                     }],
                     [{
+                        title: "Zoom to layer",
+                        className: "esri-icon-zoom-out-fixed",
+                        id: "zoomTo"
+                    }],
+                    [{
                         title: "Increase opacity",
                         className: "esri-icon-up",
                         id: "increase-opacity"
@@ -2053,6 +2061,22 @@ require([
             if (layer.opacity > 0) {
                 layer.opacity -= 0.1;
             }
+        } else if (id=== "zoomTo") {
+          // if the full-extent action is triggered then navigate
+          // to the full extent of the visible layer
+          if(event.item.layer.fullExtent.spatialReference !== mapView.spatialReference){
+            var geomSer = new GeometryService({url: 'http://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/Geometry/GeometryServer'});
+            var params = new ProjectParameters({
+              geometries: [event.item.layer.fullExtent],
+              outSpatialReference: mapView.spatialReference
+            });
+            geomSer.project(params).then(function(results){
+              mapView.goTo(results[0]);
+            });
+          }else{
+            mapView.goTo(event.item.layer.fullExtent);
+          }
+            
         }
     });
 
@@ -2061,6 +2085,15 @@ require([
 
 
     var modal = document.getElementById("myModal");
+
+    function zoomToLayer(layer) {
+        console.log(layer);
+        return layer.queryExtent().then(function(response) {
+            console.log(mapView);
+          console.log(response);
+          mapView.goTo(response.extent);
+        });
+      }
 
     layerInformation = function(eet) {
         console.log(eet);
