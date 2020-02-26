@@ -871,7 +871,7 @@ require([
             content: [{
                     type: "fields",
                     fieldInfos: [{
-                        fieldName: "relationships/3/Description",
+                        fieldName: "relationships/2/Description",
                         visible: false,
                         label: "Hazard Description"
                     }, {
@@ -887,7 +887,7 @@ require([
                 {
                     type: "text",
                     //text: "<b>Description: </b>{relationships/3/Description}<br>{LSSMappedScale:lssPopup}<br>{LSSCriticalAngle:lssPopup}"
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/3/Description}<b>Mapped Scale: </b>{LSSMappedScale}<br><b>Critical Angle: </b>{LSSCriticalAngle}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/2/Description}<br><b>Mapped Scale: </b>{LSSMappedScale}<br><b>Critical Angle: </b>{LSSCriticalAngle}"
                 }
             ]
         }
@@ -1110,7 +1110,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/16/Description}<br><b>Mapped Scale: </b>{WSSMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/17/Description}<br><b>Mapped Scale: </b>{WSSMappedScale}"
                 }
             ]
         }
@@ -1151,7 +1151,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/13/Description}<br><b>Mapped Scale: </b>{SDHMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/14/Description}<br><b>Mapped Scale: </b>{SDHMappedScale}"
                 }
             ]
         }
@@ -1192,7 +1192,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/14/Description}<br><b>Mapped Scale: </b>{SBPMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/15/Description}<br><b>Mapped Scale: </b>{SBPMappedScale}"
                 }
             ]
         }
@@ -1235,7 +1235,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/12/Description}<br><b>Mapped Scale: </b>{RFHMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/13/Description}<br><b>Mapped Scale: </b>{RFHMappedScale}"
                 }
             ]
         }
@@ -1307,7 +1307,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/8/Description}<br><b>Mapped Scale: </b>{EXSMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/9/Description}<br><b>Mapped Scale: </b>{EXSMappedScale}"
                 }
             ]
         }
@@ -1322,7 +1322,7 @@ require([
         visible: false,
         outFields: ["*"],
         popupTemplate: {
-            title: "<b>{relationships/2/HazardName}</b>",
+            title: "<b>{relationships/1/HazardName}</b>",
             content: [{
                     type: "fields",
                     fieldInfos: [{
@@ -1331,11 +1331,11 @@ require([
                             label: "Mapped Scale"
                         },
                         {
-                            fieldName: "relationships/2/Description",
+                            fieldName: "relationships/1/Description",
                             visible: false,
                             label: "Hazard Description"
                         }, {
-                            fieldName: "relationships/2/HazardName",
+                            fieldName: "relationships/1/HazardName",
                             visible: false,
                             label: "Hazard"
                         }
@@ -1379,7 +1379,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/11/Description}<br><b>Mapped Scale: </b>{GRSMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/12/Description}<br><b>Mapped Scale: </b>{GRSMappedScale}"
                 }
             ]
         }
@@ -1415,7 +1415,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/5/Description}<br><b>Mapped Scale: </b>{CRSMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/6/Description}<br><b>Mapped Scale: </b>{CRSMappedScale}"
                 }
             ]
         }
@@ -1451,7 +1451,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/4/Description}<br><b>Mapped Scale: </b>{CSSMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/5/Description}<br><b>Mapped Scale: </b>{CSSMappedScale}"
                 }
             ]
         }
@@ -1487,7 +1487,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/15/Description}<br><b>Mapped Scale: </b>{SLSMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/16/Description}<br><b>Mapped Scale: </b>{SLSMappedScale}"
                 }
             ]
         }
@@ -1523,7 +1523,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "{relationships/3/Description}<br><b>Mapped Scale: </b>{CASMappedScale}"
+                    text: "{relationships/4/Description}<br><b>Mapped Scale: </b>{CASMappedScale}"
                 }
             ]
         }
@@ -1539,7 +1539,7 @@ require([
         visible: false,
         outFields: ["*"],
         popupTemplate: {
-            title: "<b>{relationships/1/HazardName}</b>",
+            title: "<b>{relationships/0/HazardName}</b>",
             content: [{
                     type: "fields",
                     fieldInfos: [{
@@ -1548,11 +1548,11 @@ require([
                             label: "Mapped Scale"
                         },
                         {
-                            fieldName: "relationships/1/Description",
+                            fieldName: "relationships/0/Description",
                             visible: false,
                             label: "Hazard Description"
                         }, {
-                            fieldName: "relationships/1/HazardName",
+                            fieldName: "relationships/0/HazardName",
                             visible: false,
                             label: "Hazard"
                         }
@@ -1596,7 +1596,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/6/Description}<br><b>Mapped Scale: </b>{EFHMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/7/Description}<br><b>Mapped Scale: </b>{EFHMappedScale}"
                 }
             ]
         }
@@ -1632,7 +1632,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "{relationships/7/Description}<br><b>Mapped Scale: </b>{ERZMappedScale}"
+                    text: "{relationships/8/Description}<br><b>Mapped Scale: </b>{ERZMappedScale}"
                 }
             ]
         }
@@ -1704,7 +1704,7 @@ require([
                 },
                 {
                     type: "text",
-                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/9/Description}<br><b>Mapped Scale: </b>{GSPMappedScale}"
+                    text: "<b>{Hazard_Symbology_Text}: </b>{relationships/10/Description}<br><b>Mapped Scale: </b>{GSPMappedScale}"
                 }
             ]
         }
@@ -1713,7 +1713,7 @@ require([
     const soilHazards = new GroupLayer({
         title: "Problem Soil and Rock Hazards",
         visible: true,
-        layers: [eolianSus, solubleSoil, bedrockPot, tectonicDef, radonSus, pipingSus, karstFeatures, erosionZone, groundSubsidence, expansiveSoil, earthFissure, corrosiveSoil, collapsibleSoil, caliche]
+        layers: [eolianSus, solubleSoil, bedrockPot, tectonicDef, radonSus, pipingSus, karstFeatures, erosionZone, expansiveSoil, earthFissure, corrosiveSoil, collapsibleSoil, caliche]
     });
 
     const quadBoundaries = new FeatureLayer({
@@ -1925,8 +1925,17 @@ require([
         }
     });
 
+            //legend expand widget
+            var expandLegend = new Expand({
+                view: mapView,
+                content: layerList,
+                //group: "top-left",
+                expandTooltip: "Expand Legend",
+                expanded: false
+              })
+
         //legend expand widget
-        var expandLegend = new Expand({
+        var legend = new Expand({
             view: mapView,
             content: layerList,
             //group: "top-left",
@@ -1934,7 +1943,7 @@ require([
             expanded: true
           })
     
-        mapView.ui.add(expandLegend, "top-left");
+        //mapView.ui.add(expandLegend, "top-left");
 
 
     //layerlist action for opacity
@@ -2347,7 +2356,47 @@ require([
                 selectedButton.classList.add("active");
             }
         }
+
     });
+
+// Load
+
+isResponsiveSize = mapView.widthBreakpoint === "xsmall";
+updateView(isResponsiveSize);
+
+// Breakpoints
+
+mapView.watch("widthBreakpoint", function(breakpoint) {
+    console.log("watching breakpoint");
+    console.log(breakpoint);
+  switch (breakpoint) {
+    case "xsmall":
+      updateView(true);
+      break;
+    case "small":
+    case "medium":
+    case "large":
+    case "xlarge":
+      updateView(false);
+      break;
+    default:
+  }
+});
+
+function updateView(isMobile) {
+  setLegendMobile(isMobile);
+}
+
+
+function setLegendMobile(isMobile) {
+  var toAdd = isMobile ? expandLegend : legend;
+  var toRemove = isMobile ? legend : expandLegend;
+
+  mapView.ui.remove(toRemove);
+  mapView.ui.add(toAdd, "top-left");
+}
+
+   
 
 
 
