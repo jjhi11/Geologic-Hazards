@@ -147,7 +147,20 @@ require([
         contentS += "<span class='bold' title='Name'><b>Name: </b></span>{Name}<br/>";
 
 
-        contentS += "<span class='bold' title='Report ID'><b>Report ID: </b></span>{Repor_ID}<br/>";
+        
+
+        var reportIdString = feature.graphic.attributes.Repor_ID;
+        if (reportIdString) {
+        var idArray = reportIdString.split(',');
+        idArrayTrimmed = idArray.map(el => el.trim());
+        contentS += "<span class='bold' title='Report ID'><b>Report ID: </b></span>";
+        idArrayTrimmed.forEach(reportIdArraySort);
+        function reportIdArraySort(item, index) {
+            contentS += "<a href='https://doi.org/10.34191/"+item+"' target='_blank'>" + item + "</a><br/>";
+        }
+    }
+
+       // contentS += "<span class='bold' title='Report ID'><b>Report ID: </b></span>" + "<a href='https://doi.org/10.34191/{Repor_ID}' target='_blank'>{Repor_ID}</a>" + "<br/>";
 
 
         var hazardsString = feature.graphic.attributes.Hazard_Name;
@@ -2085,15 +2098,6 @@ require([
 
 
     var modal = document.getElementById("myModal");
-
-    function zoomToLayer(layer) {
-        console.log(layer);
-        return layer.queryExtent().then(function(response) {
-            console.log(mapView);
-          console.log(response);
-          mapView.goTo(response.extent);
-        });
-      }
 
     layerInformation = function(eet) {
         console.log(eet);
