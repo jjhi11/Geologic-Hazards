@@ -216,9 +216,7 @@ require([
     qfaultsPopup = function(feature) {
         console.log(feature);
         var content = "";
-        if (feature.graphic.attributes.FaultNum) {
-            content += "<span class='bold' title='Magnitude'><b>Fault Number: </b></span>{FaultNum}<br/>";
-        }
+
         if (feature.graphic.attributes.FaultZone) {
             content += "<span class='bold' title='Longitude'><b>Fault Zone: </b></span>{FaultZone}<br/>";
         }
@@ -230,6 +228,9 @@ require([
         }
         if (feature.graphic.attributes.StrandName) {
             content += "<span class='bold' title='Date'><b>Strand Name: </b></span>{StrandName}<br/>";
+        }
+        if (feature.graphic.attributes.FaultNum) {
+            content += "<span class='bold' title='Magnitude'><b>Structure Number: </b></span>{FaultNum}<br/>";
         }
         if (feature.graphic.attributes.MappedScale) {
             content += "<span class='bold' title='Date'><b>Mapped Scale: </b></span>{MappedScale}<br/>";
@@ -246,26 +247,13 @@ require([
         if (feature.graphic.attributes.MappingConstraint) {
             content += "<span class='bold' title='Date'><b>Mapping Constraint: </b></span>{MappingConstraint}<br/>";
         }
-        var slipS = feature.graphic.attributes.SlipSense;
 
-        if (slipS == "Normal") {
-            content += "<span class='bold' title='Date'><b>Fault Class: </b></span>{FaultClass}<br/>";
-        } else if (slipS == "Reverse") {
-            content += "<span class='bold' title='Date'><b>Fault Class: </b></span>{FaultClass}<br/>";
-        } else {
-            content += "<span class='bold' title='Date'><b>Fold Class: </b></span>{FaultClass}<br/>";
-        }
-
-
-
-        if (slipS == "Normal") {
-            content += "<span class='bold' title='Date'><b>Fault Age: </b></span>{FaultAge}<br/>";
-        } else if (slipS == "Reverse") {
-            content += "<span class='bold' title='Date'><b>Fault Age: </b></span>{FaultAge}<br/>";
-        } else {
-            content += "<span class='bold' title='Date'><b>Fold Age: </b></span>{FaultAge}<br/>";
-        }
-
+        if (slipS = feature.graphic.attributes.FaultClass) {
+            content += "<span class='bold' title='Date'><b>Structure Class: </b></span>{FaultClass}<br/>";
+        } 
+        if (slipS = feature.graphic.attributes.FaultAge) {
+            content += "<span class='bold' title='Date'><b>Structure Age: </b></span>{FaultAge}<br/>";
+        } 
         if (feature.graphic.attributes.USGS_Link) {
             content += "<span class='bold' title='Date'><b>USGS Link: </b></span>" + "<a href='{USGS_Link}' target='_blank'>Opens in new tab</a>" + "<br/>";
         }
@@ -1060,7 +1048,7 @@ require([
 
     const faultRupture = new FeatureLayer({
         url: "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_Earthquake_Hazards/FeatureServer/3",
-        title: "Surface Fault Rupture Special Study Zone",
+        title: "Surface Fault Rupture Special Study Zones",
         renderer: surfaceFaultRuptureRenderer,
         elevationInfo: [{
             mode: "on-the-ground"
@@ -1825,8 +1813,8 @@ require([
     });
 
     mapView.map.add(quadBoundaries);
-    mapView.map.add(airphotoPoints);
-    mapView.map.add(lidarBounds);
+   // mapView.map.add(airphotoPoints);
+   // mapView.map.add(lidarBounds);
     mapView.map.add(notMapped);
     mapView.map.add(hazardStudy);
     mapView.map.add(soilHazards);
